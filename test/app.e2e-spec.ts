@@ -5,6 +5,7 @@ import { AppModule } from './../src/app.module';
 import { DataSource } from 'typeorm';
 
 export function getDBConnection(): Promise<DataSource> {
+  console.log(process.env);
   const dataSource = new DataSource({
     type: 'postgres',
     host: process.env.DB_HOST,
