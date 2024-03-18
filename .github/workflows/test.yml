@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PORT: ${{ secrets.APP_PORT }}
-      DB_PORT: ${{ secrets.POSTGRES_PORT }}
+      DB_PORT: 5432
       DB_USERNAME:  ${{ secrets.POSTGRES_USER }}
       DB_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       DB_NAME:  ${{ secrets.POSTGRES_DB }}
@@ -24,7 +24,7 @@ jobs:
           POSTGRES_PASSWORD:  ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB:  ${{ secrets.POSTGRES_DB }}
         ports:
-          - ${{ secrets.POSTGRES_PORT }}:5432
+          - 5432:5432
         options: >-
           --health-cmd="pg_isready -U postgres" 
           --health-interval=10s 
