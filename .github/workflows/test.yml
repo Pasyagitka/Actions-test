@@ -36,7 +36,7 @@ jobs:
       - name: Set Up e2e Database
         run: |
           npm install -g pg
-          psql -U postgres -d test < test/sql/initial.sql
+          psql -h localhost -U postgres -d test < test/sql/initial.sql
 
       - name: Build
         run: npm run build
