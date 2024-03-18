@@ -1,5 +1,23 @@
 {
     "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "name": "Dev",
+        "runtimeExecutable": "npm",
+        "preLaunchTask": "Start Docker Postgres",
+        "postDebugTask": "Destroy Docker Postgres",
+        "runtimeArgs": ["run", "start"],
+        "env": {
+          "PORT": "3000",
+          "DB_PORT": "6000",
+          "DB_USERNAME": "postgres",
+          "DB_PASSWORD": "mysecretpassword",
+          "DB_NAME": "test",
+          "DB_HOST": "localhost",
+        }
+    },
         {
             "type": "node",
             "request": "launch",
