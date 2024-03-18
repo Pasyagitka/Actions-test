@@ -57,3 +57,5 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           results-file: 'test/jest-results.json'
+          create-status-check: false
+          create-pr-comment: false
