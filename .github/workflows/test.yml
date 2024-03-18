@@ -50,3 +50,6 @@ jobs:
 
       - name: Run Tests
         run: npm run test:e2e
+
+      - name: Adding markdown
+        run: echo '### Hello world! 🚀' >> $GITHUB_STEP_SUMMARY
