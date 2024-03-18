@@ -56,4 +56,4 @@ jobs:
         uses: im-open/process-jest-test-results@v2.2.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          results-file: 'test/jest-results.json
+          results-file: 'test/jest-results.json'
