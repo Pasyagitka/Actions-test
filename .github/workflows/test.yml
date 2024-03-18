@@ -8,6 +8,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      PORT: ${{ secrets.APP_PORT }}
+      DB_PORT: ${{ secrets.POSTGRES_PORT }}
+      DB_USERNAME:  ${{ secrets.POSTGRES_USER }}
+      DB_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      DB_NAME:  ${{ secrets.POSTGRES_DB }}
+      DB_HOST: localhost
 
     services:
       postgres:
@@ -17,7 +24,7 @@ jobs:
           POSTGRES_PASSWORD:  ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB:  ${{ secrets.POSTGRES_DB }}
         ports:
-          - 5432:5432
+          - ${{ secrets.POSTGRES_PORT }}:5432
         options: >-
           --health-cmd="pg_isready -U postgres" 
           --health-interval=10s 
@@ -29,31 +36,17 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      # Performs a clean installation of all dependencies in the `package.json` file
-      - name: Install Dependencies
-        run: npm ci
-
       - name: Set Up e2e Database
         run: |
           npm install -g pg
           PGPASSWORD="${{ secrets.POSTGRES_PASSWORD }}" psql -h localhost -U postgres -d test < test/sql/initial.sql
 
+      # Performs a clean installation of all dependencies in the `package.json` file
+      - name: Install Dependencies
+        run: npm ci
+
       - name: Build
         run: npm run build
-        env:
-          PORT: 3000,
-          DB_PORT: 5432,
-          DB_USERNAME:  ${{ secrets.POSTGRES_USER }}
-          DB_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          DB_NAME:  ${{ secrets.POSTGRES_DB }}
-          DB_HOST: localhost
 
       - name: Run Tests
         run: npm run test:e2e
-        env:
-          PORT: 3000,
-          DB_PORT: 5432,
-          DB_USERNAME:  ${{ secrets.POSTGRES_USER }}
-          DB_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          DB_NAME:  ${{ secrets.POSTGRES_DB }}
-          DB_HOST: localhost
