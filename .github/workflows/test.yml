@@ -13,9 +13,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: mysecretpassword
-          POSTGRES_DB: test
+          POSTGRES_USER:  ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD:  ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB:  ${{ secrets.POSTGRES_DB }}
         ports:
           - 5432:5432
         options: >-
@@ -36,16 +36,16 @@ jobs:
       - name: Set Up e2e Database
         run: |
           npm install -g pg
-          PGPASSWORD=mysecretpassword psql -h localhost -U postgres -d test < test/sql/initial.sql
+          PGPASSWORD=${{ secrets.POSTGRES_PASSWORD }} psql -h localhost -U postgres -d test < test/sql/initial.sql
 
       - name: Build
         run: npm run build
         env:
           PORT: 3000,
           DB_PORT: 5432,
-          DB_USERNAME: postgres
-          DB_PASSWORD: mysecretpassword
-          DB_NAME: test
+          DB_USERNAME:  ${{ secrets.POSTGRES_USER }}
+          DB_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          DB_NAME:  ${{ secrets.POSTGRES_DB }}
           DB_HOST: postgres
 
       - name: Run Tests
