@@ -36,17 +36,17 @@ jobs:
       - name: Set Up e2e Database
         run: |
           npm install -g pg
-          psql -h localhost -U postgres -d test < test/sql/initial.sql
+          PGPASSWORD=mysecretpassword psql -h localhost -U postgres -d test < test/sql/initial.sql
 
       - name: Build
         run: npm run build
         env:
           PORT: 3000,
           DB_PORT: 5432,
-          DB_USERNAME: postgres,
-          DB_PASSWORD: mysecretpassword,
-          DB_NAME: test,
-          DB_HOST: postgres,
+          DB_USERNAME: postgres
+          DB_PASSWORD: mysecretpassword
+          DB_NAME: test
+          DB_HOST: postgres
 
       - name: Run Tests
         run: npm test:e2e
