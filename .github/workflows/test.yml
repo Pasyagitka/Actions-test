@@ -49,7 +49,11 @@ jobs:
         run: npm run build
 
       - name: Run Tests
-        run: npm run test:e2e
+        run: npm run test:e2e:json
 
-      - name: Adding markdown
-        run: echo '### Hello world! 🚀' >> $GITHUB_STEP_SUMMARY
+      - name: Process jest results with default
+        if: always()
+        uses: im-open/process-jest-test-results@v2.2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          results-file: 'test/jest-results.json
