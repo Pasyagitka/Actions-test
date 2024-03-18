@@ -1,0 +1,52 @@
+name: Build and run E2E Tests
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: mysecretpassword
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres" 
+          --health-interval=10s 
+          --health-timeout=5s 
+          --health-retries=3
+
+    steps:
+      # Downloads a copy of the code in your repository before running CI tests
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      # Performs a clean installation of all dependencies in the `package.json` file
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Set Up e2e Database
+        run: |
+          npm install -g pg
+          psql -U postgres -d test < /test/sql/initial.sql
+
+      - name: Build
+        run: npm run build
+        env:
+          PORT: 3000,
+          DB_PORT: 5432,
+          DB_USERNAME: postgres,
+          DB_PASSWORD: mysecretpassword,
+          DB_NAME: test,
+          DB_HOST: postgres,
+
+      - name: Run Tests
+        run: npm test:e2e

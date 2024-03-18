@@ -1,0 +1,50 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Docker Postgres",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+              "Start Docker Postgres Container",
+              "Sleep for 5 seconds",
+              "Create TBLS schema"
+            ]
+          },
+          {
+              "label": "Start Docker Postgres Container",
+              "type": "shell",
+              "command": "docker run --name actions-test-postgres -v \"${input:workspaceType}\"/:/app -p 6000:5432 -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=test -d postgres"
+          },
+          {
+              "label": "Create TBLS schema",
+              "type": "shell",
+              "command": "docker exec actions-test-postgres sh -c 'psql -U postgres -d test -q < /app/initial.sql'",
+              "presentation": {
+                "echo": false
+              }
+          },
+          {
+            "label": "Sleep for 5 seconds",
+            "type": "shell",
+            "command": "ping 127.0.0.1 -n 5"
+          },
+          {
+            "label": "Destroy Docker Postgres",
+            "type": "shell",
+            "command": "docker container rm -f actions-test-postgres"
+          }
+        ],
+        "inputs": [
+          {
+            "type": "pickString",
+            "id": "workspaceType",
+            "description": "Path to folder with initial.sql script",
+            "options": [
+                "D:\\project\\actions-test",
+            ],
+            "default": "D:\\project\\actions-test",
+          }
+        ]
+}
