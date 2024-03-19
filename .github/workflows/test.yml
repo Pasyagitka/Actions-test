@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.1.1
 
       - name: Install Dependencies
         run: npm ci
@@ -50,7 +50,12 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.1.1
+
+      - run: |
+          git fetch --no-tags --depth=1 origin master
+          git checkout -b master
+          git checkout ${{ github.event.pull_request.head.sha }}
 
       - name: Set Up e2e Database
         run: |
@@ -61,7 +66,7 @@ jobs:
         run: npm ci
 
       - name: Run Tests
-        run: npm run test:e2e:json
+        run: npm run test:e2e:changedSince
 
       - name: Process jest results with default
         if: always()
