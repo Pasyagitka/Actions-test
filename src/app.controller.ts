@@ -7,6 +7,7 @@ export class AppController {
 
   @Get()
   getHello(): string {
+    console.log('file changed');
     return this.appService.getHello();
   }
 }
