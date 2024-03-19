@@ -51,7 +51,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4.1.1
-
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - run: |
           git fetch --no-tags --depth=1 origin master
           git checkout -b master
