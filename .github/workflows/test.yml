@@ -26,7 +26,7 @@ jobs:
       - name: Build
         run: npm run build
 
-  create-test-db:
+  test:
     needs: build
     runs-on: ubuntu-latest
 
@@ -51,10 +51,12 @@ jobs:
           npm install -g pg
           PGPASSWORD="${{ secrets.POSTGRES_PASSWORD }}" psql -h localhost -U postgres -d test < test/sql/initial.sql
 
-  test:
-    needs: [build, create-test-db]
-    runs-on: ubuntu-latest
-    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm ci
+
       - name: Run Tests
         run: npm run test:e2e:json
 
