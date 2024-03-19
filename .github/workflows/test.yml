@@ -29,6 +29,9 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
 
     services:
       postgres:
