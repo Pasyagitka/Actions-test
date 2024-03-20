@@ -59,6 +59,7 @@ jobs:
           git fetch --no-tags origin master
           git checkout -b master
           git checkout ${{ github.event.pull_request.head.sha }}
+          git diff master...${{ github.event.pull_request.head.sha }}
 
       - name: Set Up e2e Database
         run: |
