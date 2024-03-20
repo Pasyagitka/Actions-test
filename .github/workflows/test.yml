@@ -55,7 +55,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }} #Checkout pull request HEAD commit
           fetch-depth: 0 #Fetch all history for all tags and branches
       
-      - run: git fetch origin/master
+      - run: git fetch origin master
       #- run: |
       #    git fetch --no-tags --depth=1 origin master
     # git checkout -b master
