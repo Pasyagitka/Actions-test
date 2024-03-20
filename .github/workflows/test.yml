@@ -70,7 +70,6 @@ jobs:
 
       - name: Show changed files
         run: |
-          git diff master...${{ github.event.pull_request.head.sha }}
           git diff origin/master...${{ github.event.pull_request.head.sha }}
 
       - name: Run Tests
