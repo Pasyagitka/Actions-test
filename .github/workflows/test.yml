@@ -52,9 +52,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4.1.1
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha }} #Checkout pull request HEAD commit
+          fetch-depth: 0 #Fetch all history for all tags and branches
+      
       - run: |
-          git fetch --no-tags --depth=1 origin master
+          git fetch --no-tags origin master
           git checkout -b master
           git checkout ${{ github.event.pull_request.head.sha }}
 
