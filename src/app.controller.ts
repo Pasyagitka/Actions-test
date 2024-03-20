@@ -8,6 +8,7 @@ export class AppController {
   @Get()
   getHello(): string {
     console.log('file changed');
+    const trt = 1;
     return this.appService.getHello();
   }
 }
