@@ -1,4 +1,5 @@
 name: Build and run E2E Tests
+run-name:  Deploy to ${{ github.ref.GITHUB_HEAD_REF }}
 
 on:
   pull_request:
