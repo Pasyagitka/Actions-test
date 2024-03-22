@@ -1,5 +1,5 @@
 name: Build and run E2E Tests
-run-name:  Deploy to ${{ github.ref.GITHUB_HEAD_REF }}
+run-name: Pull request ${{ github.event.pull_request.title }} (${{ github.event.pull_request.head.label}})
 
 on:
   pull_request:
