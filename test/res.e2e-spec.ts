@@ -41,7 +41,6 @@ describe('ResController (e2e)', () => {
 
   it('Select from dataSource', async () => {
     const res = await dataSource.query('select 1 from testtable');
-    console.log('qwdqwd');
   });
 
   afterAll(async () => {
