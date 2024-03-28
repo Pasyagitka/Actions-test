@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
+import { ResModule } from './../src/res/res.module';
 import { DataSource } from 'typeorm';
 
 export function getDBConnection(): Promise<DataSource> {
@@ -16,13 +16,13 @@ export function getDBConnection(): Promise<DataSource> {
   return dataSource.initialize();
 }
 
-describe('AppController (e2e)', () => {
+describe('ResController (e2e)', () => {
   let app: INestApplication;
   let dataSource: DataSource;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [ResModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
@@ -36,12 +36,11 @@ describe('AppController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/')
       .expect(200)
-      .expect('Hello World!');
+      .expect('This action adds a new re');
   });
 
   it('Select from dataSource', async () => {
     const res = await dataSource.query('select 1 from testtable');
-    console.log('qwdqwd');
   });
 
   afterAll(async () => {

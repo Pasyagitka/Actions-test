@@ -1,0 +1,148 @@
+{
+  "numFailedTestSuites": 2,
+  "numFailedTests": 4,
+  "numPassedTestSuites": 0,
+  "numPassedTests": 0,
+  "numPendingTestSuites": 0,
+  "numPendingTests": 0,
+  "numRuntimeErrorTestSuites": 2,
+  "numTodoTests": 0,
+  "numTotalTestSuites": 2,
+  "numTotalTests": 4,
+  "openHandles": [],
+  "snapshot": {
+    "added": 0,
+    "didUpdate": false,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0
+  },
+  "startTime": 1711629131455,
+  "success": false,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["ResController (e2e)"],
+          "duration": 824,
+          "failureDetails": [
+            {
+              "errno": -4078,
+              "code": "ECONNREFUSED",
+              "syscall": "connect",
+              "address": "127.0.0.1",
+              "port": 5432
+            }
+          ],
+          "failureMessages": [
+            "Error: connect ECONNREFUSED 127.0.0.1:5432\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16)"
+          ],
+          "fullName": "ResController (e2e) / (GET)",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "status": "failed",
+          "title": "/ (GET)"
+        },
+        {
+          "ancestorTitles": ["ResController (e2e)"],
+          "duration": 8,
+          "failureDetails": [
+            {
+              "errno": -4078,
+              "code": "ECONNREFUSED",
+              "syscall": "connect",
+              "address": "127.0.0.1",
+              "port": 5432
+            }
+          ],
+          "failureMessages": [
+            "Error: connect ECONNREFUSED 127.0.0.1:5432\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16)"
+          ],
+          "fullName": "ResController (e2e) Select from dataSource",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "status": "failed",
+          "title": "Select from dataSource"
+        }
+      ],
+      "coverage": {},
+      "endTime": 1711629144031,
+      "message": "  ● ResController (e2e) › / (GET)\n\n    connect ECONNREFUSED 127.0.0.1:5432\n\n\n\n  ● ResController (e2e) › Select from dataSource\n\n    connect ECONNREFUSED 127.0.0.1:5432\n\n\n\n\n  ● Test suite failed to run\n\n    TypeError: Cannot read properties of undefined (reading 'destroy')\n\n      45 |\n      46 |   afterAll(async () => {\n    > 47 |     await dataSource.destroy();\n         |                      ^\n      48 |     await app.close();\n      49 |   });\n      50 | });\n\n      at Object.<anonymous> (res.e2e-spec.ts:47:22)\n",
+      "name": "D:\\project\\actions-test\\actions-test\\test\\res.e2e-spec.ts",
+      "startTime": 1711629144031,
+      "status": "failed",
+      "summary": ""
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["AppController (e2e)"],
+          "duration": 824,
+          "failureDetails": [
+            {
+              "errno": -4078,
+              "code": "ECONNREFUSED",
+              "syscall": "connect",
+              "address": "127.0.0.1",
+              "port": 5432
+            }
+          ],
+          "failureMessages": [
+            "Error: connect ECONNREFUSED 127.0.0.1:5432\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16)"
+          ],
+          "fullName": "AppController (e2e) / (GET)",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "status": "failed",
+          "title": "/ (GET)"
+        },
+        {
+          "ancestorTitles": ["AppController (e2e)"],
+          "duration": 7,
+          "failureDetails": [
+            {
+              "errno": -4078,
+              "code": "ECONNREFUSED",
+              "syscall": "connect",
+              "address": "127.0.0.1",
+              "port": 5432
+            }
+          ],
+          "failureMessages": [
+            "Error: connect ECONNREFUSED 127.0.0.1:5432\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16)"
+          ],
+          "fullName": "AppController (e2e) Select from dataSource",
+          "invocations": 1,
+          "location": null,
+          "numPassingAsserts": 0,
+          "retryReasons": [],
+          "status": "failed",
+          "title": "Select from dataSource"
+        }
+      ],
+      "coverage": {},
+      "endTime": 1711629144031,
+      "message": "  ● AppController (e2e) › / (GET)\n\n    connect ECONNREFUSED 127.0.0.1:5432\n\n\n\n  ● AppController (e2e) › Select from dataSource\n\n    connect ECONNREFUSED 127.0.0.1:5432\n\n\n\n\n  ● Test suite failed to run\n\n    TypeError: Cannot read properties of undefined (reading 'destroy')\n\n      46 |\n      47 |   afterAll(async () => {\n    > 48 |     await dataSource.destroy();\n         |                      ^\n      49 |     await app.close();\n      50 |   });\n      51 | });\n\n      at Object.<anonymous> (app.e2e-spec.ts:48:22)\n",
+      "name": "D:\\project\\actions-test\\actions-test\\test\\app.e2e-spec.ts",
+      "startTime": 1711629144031,
+      "status": "failed",
+      "summary": ""
+    }
+  ],
+  "wasInterrupted": false
+}

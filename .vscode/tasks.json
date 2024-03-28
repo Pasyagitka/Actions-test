@@ -42,9 +42,9 @@
             "id": "workspaceType",
             "description": "Path to folder with initial.sql script",
             "options": [
-                "D:\\project\\actions-test",
+                "D:\\project\\actions-test\\actions-test\\test\\sql",
             ],
-            "default": "D:\\project\\actions-test",
+            "default": "D:\\project\\actions-test\\actions-test\\test\\sql",
           }
         ]
 }
