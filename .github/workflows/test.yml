@@ -65,15 +65,16 @@ jobs:
         run: npm run test:e2e:changedSince
 
       - name: Run Jest Tests
+        id: jest
         if: always()
-        uses: Pasyagitka/print-jest-results-action@v1.0.4
+        uses: Pasyagitka/print-jest-results-action@v1.0.5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           results-file: 'test/jest-results.json'
       
       - name: Display Test Files
         if: always()
-        run: echo "JEST"  >> $GITHUB_STEP_SUMMARY
+        run: echo "${{ steps.jest.outputs.test-files }}"  >> $GITHUB_STEP_SUMMARY
     
       #- name: Process jest results with default
       #  if: always()
