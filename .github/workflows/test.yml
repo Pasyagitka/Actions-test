@@ -93,6 +93,7 @@ jobs:
           results-file: 'test/jest-results.json'
       
       - name: Display Test Files
+        if: always()
         run: echo "JEST"
     
       #- name: Process jest results with default
