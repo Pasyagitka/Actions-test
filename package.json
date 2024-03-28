@@ -17,7 +17,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:e2e": "jest --config ./test/jest-e2e.json --changedSince=origin/master",
+    "test:e2e:list": "jest --json --config ./test/jest-e2e.json --outputFile=./test/jest-results.json --changedSince=origin/master --ci --listTests",
     "test:e2e:changedSince": "jest --json --config ./test/jest-e2e.json --outputFile=./test/jest-results.json --changedSince=origin/master --ci",
     "test": "jest --json --config ./test/jest-e2e.json --outputFile=./test/jest-results.json --changedSince=master --ci"
   },
