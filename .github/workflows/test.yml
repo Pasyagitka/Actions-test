@@ -87,7 +87,7 @@ jobs:
 
       - name: Run Jest Tests
         if: always()
-        uses: Pasyagitka/print-jest-results-action@v1.0.3
+        uses: Pasyagitka/print-jest-results-action@v1.0.4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           results-file: 'test/jest-results.json'
