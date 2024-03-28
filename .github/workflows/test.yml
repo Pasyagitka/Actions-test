@@ -65,7 +65,7 @@ jobs:
       - name: Set Up e2e Database
         run: |
           npm install -g pg
-          PGPASSWORD="$DB_PASSWORD" psql -h localhost -U postgres -d test < test/sql/initial.sql
+          PGPASSWORD="${{ env.DB_PASSWORD }}" psql -h localhost -U postgres -d test < test/sql/initial.sql
 
       - name: Install Dependencies
         run: npm ci
