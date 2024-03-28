@@ -67,7 +67,7 @@ jobs:
 
       - name: Display Run Test Files
         if: always()
-        run: echo "${{ steps.runtest.outputs }}"  >> $GITHUB_STEP_SUMMARY
+        run: echo "${{ steps.runtest.outputs.* }}"  >> $GITHUB_STEP_SUMMARY
 
       - name: Run Jest Tests
         id: jest
