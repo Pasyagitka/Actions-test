@@ -86,6 +86,7 @@ jobs:
         run: npm run test:e2e:changedSince
 
       - name: Generate list using Markdown
+        if: always()
         run: |
           echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
