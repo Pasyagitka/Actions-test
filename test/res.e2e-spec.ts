@@ -17,7 +17,7 @@ export function getDBConnection(): Promise<DataSource> {
 }
 
 describe('ResController (e2e)', () => {
-  let Res: INestApplication;
+  let app: INestApplication;
   let dataSource: DataSource;
 
   beforeEach(async () => {
@@ -25,15 +25,15 @@ describe('ResController (e2e)', () => {
       imports: [ResModule],
     }).compile();
 
-    Res = moduleFixture.createNestApplication();
+    app = moduleFixture.createNestApplication();
 
     dataSource = await getDBConnection();
 
-    await Res.init();
+    await app.init();
   });
 
   it('/ (GET)', () => {
-    return request(Res.getHttpServer())
+    return request(app.getHttpServer())
       .get('/')
       .expect(200)
       .expect('This action adds a new re');
@@ -45,6 +45,6 @@ describe('ResController (e2e)', () => {
 
   afterAll(async () => {
     await dataSource.destroy();
-    await Res.close();
+    await app.close();
   });
 });
