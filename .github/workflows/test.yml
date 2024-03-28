@@ -91,6 +91,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           results-file: 'test/jest-results.json'
+      
+      - name: Display Test Files
+        run: echo "JEST"
     
       #- name: Process jest results with default
       #  if: always()
