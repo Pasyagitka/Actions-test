@@ -85,14 +85,12 @@ jobs:
       - name: Run Tests
         run: npm run test:e2e:changedSince
 
-      - name: Generate list using Markdown
+      - name: Run Jest Tests
         if: always()
-        run: |
-          echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
-          echo "- Lets add a bullet point" >> $GITHUB_STEP_SUMMARY
-          echo "- Lets add a second bullet point" >> $GITHUB_STEP_SUMMARY
-          echo "- How about a third one?" >> $GITHUB_STEP_SUMMARY
+        run: node .github/workflows/run-jest-tests.js
+        env:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          results-file: 'test/jest-results.json'
     
       #- name: Process jest results with default
       #  if: always()
