@@ -87,8 +87,8 @@ jobs:
 
       - name: Run Jest Tests
         if: always()
-        run: node .github/workflows/run-jest-tests.js
-        env:
+        uses: Pasyagitka/print-jest-results-action@v1.0
+        with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           results-file: 'test/jest-results.json'
     
