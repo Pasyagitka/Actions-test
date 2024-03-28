@@ -75,14 +75,22 @@ jobs:
           git diff origin/master...${{ github.event.pull_request.head.sha }}
 
       - name: Run Tests
-        run: npm run test:e2e:changedSince > test/output.txt
+        run: npm run test:e2e:changedSince
+
+      - name: Generate list using Markdown
+        run: |
+          echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "- Lets add a bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- Lets add a second bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- How about a third one?" >> $GITHUB_STEP_SUMMARY
     
-      - name: Process jest results with default
-        if: always()
-        uses: im-open/process-jest-test-results@v2.2.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          results-file: 'test/jest-results.json'
-          create-status-check: true
-          create-pr-comment: false
+      #- name: Process jest results with default
+      #  if: always()
+      #  uses: im-open/process-jest-test-results@v2.2.0
+      #  with:
+      #    github-token: ${{ secrets.GITHUB_TOKEN }}
+      #    results-file: 'test/jest-results.json'
+      #    create-status-check: true
+      #    create-pr-comment: false
 
