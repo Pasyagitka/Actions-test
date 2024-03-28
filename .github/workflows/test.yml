@@ -62,7 +62,12 @@ jobs:
           git diff origin/master...${{ github.event.pull_request.head.sha }}
 
       - name: Run Tests
+        id: runtest
         run: npm run test:e2e:changedSince
+
+      - name: Display Run Test Files
+        if: always()
+        run: echo "${{ steps.runtest.outputs }}"  >> $GITHUB_STEP_SUMMARY
 
       - name: Run Jest Tests
         id: jest
