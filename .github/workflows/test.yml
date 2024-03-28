@@ -75,7 +75,7 @@ jobs:
           git diff origin/master...${{ github.event.pull_request.head.sha }}
 
       - name: Run Tests
-        run: npm run test:e2e:changedSince
+        run: npm run test:e2e:changedSince > test/output.txt
     
       - name: Process jest results with default
         if: always()
