@@ -38,9 +38,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER:  ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PASSWORD:  ${{ secrets.POSTGRES_PASSWORD }}
-          POSTGRES_DB:  ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER:  ${{ env.DB_USERNAME }}
+          POSTGRES_PASSWORD:  ${{ env.DB_PASSWORD }}
+          POSTGRES_DB:  ${{ env.DB_NAME }}
         ports:
           - 5432:5432
         options: >-
@@ -65,7 +65,7 @@ jobs:
       - name: Set Up e2e Database
         run: |
           npm install -g pg
-          PGPASSWORD="${{ secrets.POSTGRES_PASSWORD }}" psql -h localhost -U postgres -d test < test/sql/initial.sql
+          PGPASSWORD="${{ env.DB_PASSWORD }}" psql -h localhost -U postgres -d test < test/sql/initial.sql
 
       - name: Install Dependencies
         run: npm ci
@@ -75,7 +75,7 @@ jobs:
           git diff origin/master...${{ github.event.pull_request.head.sha }}
 
       - name: Run Tests
-        run: npm run test:e2e
+        run: npm run test:e2e:changedSince
     
       - name: Process jest results with default
         if: always()
